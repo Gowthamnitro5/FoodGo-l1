@@ -1,9 +1,11 @@
 // App.js
 import React from 'react';
-import Navbar from './components/navbarl1';
-import HeroText from './components/heroTextl1';
-import FoodCard from './components/foodCardl1';
-import Footer from './components/footerl1';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/navbarl2';
+import HeroText from './components/heroTextl2';
+import FoodCard from './components/foodCardl2';
+import Footer from './components/footerl2';
+import PaymentPage from './components/paymentl1';
 import pizza3 from './components/images/pizza3.png';
 
 
@@ -15,21 +17,31 @@ function App() {
     { name: 'Pasta', description: 'Creamy and savory', imageUrl: pizza3 },
     { name: 'Salad', description: 'Fresh and healthy', imageUrl: pizza3 },
   ];
-
   return (
     <div>
       <Navbar />
       <HeroText />
-      <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
-        {foodItems.map((item, index) => (
-          <FoodCard 
-            key={index} 
-            name={item.name} 
-            description={item.description} 
-            imageUrl={item.imageUrl} 
-          />
-        ))}
-      </div>
+      
+      {/* Define Routes */}
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px' }}>
+              {foodItems.map((item, index) => (
+                <FoodCard 
+                  key={index} 
+                  name={item.name} 
+                  description={item.description} 
+                  imageUrl={item.imageUrl} 
+                />
+              ))}
+            </div>
+          } 
+        />
+        <Route path="/payment" element={<PaymentPage />} />
+      </Routes>
+      
       <Footer />
     </div>
   );
